@@ -17,4 +17,11 @@ describe Metas::Helpers::Tags::InstanceMethods do
       it{ expect(meta_tags).to have_selector("meta[property='og:description']", visible: false) }
     end
   end
+
+  describe "#get_meta" do
+    context "passed in args" do
+      it{ expect(get_meta("og:description")).to eq("Test") }
+      it{ expect(get_meta("twitter:card")).to eq("summary") }
+    end
+  end
 end

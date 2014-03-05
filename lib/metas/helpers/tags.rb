@@ -18,10 +18,22 @@ module Metas
           end.join("\n")
         end
 
+        def get_meta(attr)
+          split_attr = attr.split(":")
+          metas = meta_main.normalize.deep_stringify_keys
+          return nil if metas[split_attr[0]].nil?
+
+          metas[split_attr[0]][split_attr[1]]
+        end
+
         private
 
         def meta_property(tag, attr)
           "#{tag}:#{attr}"
+        end
+
+        def meta_main
+          Metas::Main.new(controller)
         end
       end
     end
