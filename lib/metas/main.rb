@@ -36,8 +36,7 @@ module Metas
     def insert_all(meta_tags)
       meta_tags.each_with_object({}) do |(key, tags), hsh|
         if tags.kind_of?(Hash)
-          hsh[key] = {}
-          hsh[key].merge!(tags)
+          hsh[key] = tags
 
           default_values.each do |key_social, value_social|
             next unless options[:same][key_social]
