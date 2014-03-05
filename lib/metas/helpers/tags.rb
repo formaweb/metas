@@ -37,3 +37,7 @@ module Metas
     end
   end
 end
+
+module ActionView::Helpers
+  include Metas::Helpers::Tags::InstanceMethods
+end
