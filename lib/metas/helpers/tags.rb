@@ -7,10 +7,8 @@ module Metas
         include ActionView::Helpers::TagHelper
 
         def meta_tags
-          meta = Metas::Main.new(controller)
-
-          meta.normalize.each_with_object([]) do |(tag, values), ary|
-            correct_property = meta.options[:irregular][tag] || meta.options[:irregular][:default]
+          meta_main.normalize.each_with_object([]) do |(tag, values), ary|
+            correct_property = meta_main.options[:irregular][tag] || meta_main.options[:irregular][:default]
 
             values.each do |attr, content|
               ary << content_tag(:meta, nil, correct_property => meta_property(tag, attr), content: content)
