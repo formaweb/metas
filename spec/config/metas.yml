@@ -1,0 +1,10 @@
+metas:
+  irregular:
+    default: name
+    og: property
+    twitter: name
+
+  same:
+    description:
+      og: description
+      twitter: description
