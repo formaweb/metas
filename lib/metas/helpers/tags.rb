@@ -38,6 +38,4 @@ module Metas
   end
 end
 
-module ActionView::Helpers
-  include Metas::Helpers::Tags::InstanceMethods
-end
+ActionView::Helpers.send :include, Metas::Helpers::Tags::InstanceMethods
