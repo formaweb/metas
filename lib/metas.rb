@@ -1,5 +1,6 @@
 require "metas/version"
+require "metas/main"
+require "metas/helpers/tags.rb"
 
 module Metas
-  # Your code goes here...
 end
