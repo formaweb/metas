@@ -11,9 +11,9 @@ module Metas
             correct_property = meta_main.options[:irregular][tag] || meta_main.options[:irregular][:default]
 
             values.each do |attr, content|
-              ary << content_tag(:meta, nil, correct_property => meta_property(tag, attr), content: content)
+              ary << tag(:meta, { :content => content, correct_property => meta_property(tag, attr) }, true, false)
             end
-          end.join("\n")
+          end.join("\n").html_safe
         end
 
         def get_meta(attr)
@@ -38,4 +38,4 @@ module Metas
   end
 end
 
-ActionView::Helpers.send :include, Metas::Helpers::Tags::InstanceMethods
+ActionView::Base.send :include, Metas::Helpers::Tags::InstanceMethods
