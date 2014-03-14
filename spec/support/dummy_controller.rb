@@ -12,8 +12,11 @@ class DummyController
       twitter: {
         card: 'summary',
         site: '@example',
-        title: 'Example title',
-        domain: 'example.com'
+        title: false,
+        domain: nil,
+      },
+      article: {
+        tag: ['test', 'other']
       }
     }
   end
