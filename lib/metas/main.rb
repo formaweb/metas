@@ -39,10 +39,10 @@ module Metas
           hsh[key] = tags
 
           default_values.each do |key_social, value_social|
-            next unless options[:same][key_social]
-            correct_key = options[:same][key_social][key].to_sym
+            next if options[:same][key_social].nil? || options[:same][key_social][key].nil?
 
-            hsh[key][correct_key] = value_social
+            correct_key = options[:same][key_social][key].to_sym
+            hsh[key][correct_key] = values[key].fetch(correct_key){ value_social }
           end
         else
           hsh[key] = tags
