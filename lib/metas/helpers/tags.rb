@@ -11,7 +11,18 @@ module Metas
             correct_property = meta_main.options[:irregular][tag] || meta_main.options[:irregular][:default]
 
             values.each do |attr, content|
-              ary << tag(:meta, { :content => content, correct_property => meta_property(tag, attr) }, true, false)
+              next if content.nil? || !content
+
+              case content
+              when String then
+                ary << tag_with_correct_property(correct_property, tag, attr, content)
+              when Array then
+                content.each do |c|
+                  ary << tag_with_correct_property(correct_property, tag, attr, c)
+                end
+              else
+                ary << tag_with_correct_property(correct_property, tag, attr, content)
+              end
             end
           end.join("\n").html_safe
         end
@@ -19,12 +30,16 @@ module Metas
         def get_meta(attr)
           split_attr = attr.split(":")
           metas = meta_main.normalize.deep_stringify_keys
-          return nil if metas[split_attr[0]].nil?
 
+          return nil if metas[split_attr[0]].nil?
           metas[split_attr[0]][split_attr[1]]
         end
 
         private
+
+        def tag_with_correct_property(property, tag, attr, content)
+          tag(:meta, { property => meta_property(tag, attr), :content => content }, true, false)
+        end
 
         def meta_property(tag, attr)
           "#{tag}:#{attr}"
