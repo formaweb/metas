@@ -1,6 +1,6 @@
 metas:
   irregular:
-    default: name
+    default: property
     og: property
     twitter: name
 
@@ -8,3 +8,6 @@ metas:
     description:
       og: description
       twitter: description
+    title:
+      og: title
+      twitter: title
