@@ -5,7 +5,7 @@ module Metas
 
         def change_meta_tags(&block)
           self.define_singleton_method(:default_meta_tags) do
-            super().merge(block.call)
+            super().deep_merge(block.call)
           end
         end
 
