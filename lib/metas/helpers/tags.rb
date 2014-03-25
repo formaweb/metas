@@ -33,8 +33,7 @@ module Metas
           split_attr = attr.split(":")
           metas = meta_main.normalize.deep_stringify_keys
 
-          return nil if metas[split_attr[0]].nil?
-          metas[split_attr[0]][split_attr[1]]
+          metas.fetch(split_attr[0], {}).fetch(split_attr[1])
         end
 
         private
