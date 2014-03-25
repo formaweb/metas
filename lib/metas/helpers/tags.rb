@@ -28,6 +28,8 @@ module Metas
         end
 
         def get_meta(attr)
+          return meta_main.default_values[attr] if attr !~ /^(\w+)?:(\w+)$/
+
           split_attr = attr.split(":")
           metas = meta_main.normalize.deep_stringify_keys
 

@@ -28,9 +28,13 @@ describe Metas::Helpers::Tags::InstanceMethods do
   end
 
   describe "#get_meta" do
-    context "passed in args" do
+    context "passed in args social attribute" do
       it{ expect(get_meta("og:description")).to eq("Test") }
       it{ expect(get_meta("twitter:card")).to eq("summary") }
+    end
+    context "default value" do
+      it{ expect(get_meta("keywords")).to eq(controller.default_meta_tags["keywords"]) }
+      it{ expect(get_meta("title")).to eq(controller.default_meta_tags["title"]) }
     end
   end
 end
